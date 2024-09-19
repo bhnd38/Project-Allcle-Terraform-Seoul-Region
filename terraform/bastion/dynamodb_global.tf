@@ -19,8 +19,7 @@ resource "aws_dynamodb_global_table" "schedule_table" {
 
 resource "aws_dynamodb_global_table" "professor_table" {
     depends_on = [
-        aws_dynamodb_table.professor_table,
-        aws_dynamodb_table.professor_table_us
+        aws_dynamodb_table.professor_table
     ]
     
     name = "Professor"

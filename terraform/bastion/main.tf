@@ -116,6 +116,11 @@ data "aws_ami" "amazon_linux_2023" {
   }
 
   filter {
+    name = "architecture"
+    values = ["x86_64"]
+  }
+  
+  filter {
     name = "virtualization-type"
     values = ["hvm"]
   }
@@ -146,7 +151,7 @@ data "aws_acm_certificate" "issued" {
 
 # alb controller 역할 데이터 불러오기
 data "aws_iam_role" "alb_controller_role" {
-  name = "us-alb-controller-role"
+  name = "alb-controller-role"
 }
 
 # ALB 데이터 가져오기
