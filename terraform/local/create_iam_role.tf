@@ -17,6 +17,7 @@ resource "aws_iam_role" "alb_controller_role" {
   tags = {
     Name = "ALBIngressControllerRole"
   }
+  depends_on = [ module.eks ]
 }
 
 # ALB Controller IAM Policy 생성

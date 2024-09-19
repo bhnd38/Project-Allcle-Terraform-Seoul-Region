@@ -29,7 +29,7 @@ variable "private_subnet_c_cidr" {
   default     = "192.168.4.0/24"
 }
 
-# Ohio 리전
+# 서울 리전
 variable "region" {
   description = "AWS Seoul region"
   type        = string
@@ -45,7 +45,7 @@ variable "instance_type" {
 variable "eks_cluster_name" {
   description = "EKS Cluster name"
   type        = string
-  default     = "allcle-eks-cluster"
+  default     = "allcle-cluster"
 }
 
 variable "node_group_name" {
