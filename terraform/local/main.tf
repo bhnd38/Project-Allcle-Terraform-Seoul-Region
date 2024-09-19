@@ -76,6 +76,7 @@ module "eks" {
   tags = {
     Environment = "ALLCLE"
   }
+  depends_on = [ aws_vpc.allcle_vpc ]
 }
 
 # EKS 클러스터 보안 그룹에 인바운드 룰 추가
