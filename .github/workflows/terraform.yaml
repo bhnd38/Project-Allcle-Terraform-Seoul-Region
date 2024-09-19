@@ -16,7 +16,7 @@ env:
 
 jobs:
   terraform:
-    name: 'Terraform for Multi-region'
+    name: 'Terraform for Seoul-region'
     runs-on: ubuntu-latest
 
     defaults:
