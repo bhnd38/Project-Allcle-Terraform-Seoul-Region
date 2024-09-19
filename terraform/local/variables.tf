@@ -96,3 +96,27 @@ variable "eks_ingress_name" {
   type = string
   default = "allcle-ingress"
 }
+
+#----------------------------------------------------
+# VPN Variables
+
+variable "untangle_public_ip" {
+  description = "Untangle's Public IP"
+  type = string
+  default = "175.196.82.2"
+}
+
+variable "tunnel1_psk" {
+  description = "Tunnel 1의 사전 공유 키"
+  type = string
+  default = "allcle_vpn_key"
+  sensitive = true
+}
+
+variable "tunnel2_psk" {
+  description = "Tunnel 2의 사전 공유 키"
+  type = string
+  default = "allcle_vpn_key"
+  sensitive = true
+}
+
