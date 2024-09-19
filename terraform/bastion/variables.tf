@@ -30,9 +30,9 @@ variable "private_subnet_c_cidr" {
 }
 
 variable "region" {
-  description = "AWS region"
+  description = "AWS Seoul region"
   type        = string
-  default     = "us-east-2"
+  default     = "ap-northeast-2"
 }
 
 variable "instance_type" {

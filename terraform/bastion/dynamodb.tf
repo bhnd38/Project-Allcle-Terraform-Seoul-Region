@@ -17,6 +17,10 @@ resource "aws_dynamodb_table" "schedule_table" {
         type = "S"
     }
 
+    replica {
+        region_name = "us-east-2"
+    }
+
     global_secondary_index {
         name               = "DayIndex"
         hash_key           = "day"
@@ -37,6 +41,10 @@ resource "aws_dynamodb_table" "professor_table" {
         name = "prof_id"
         type = "N"
     }
+    
+    replica {
+        region_name = "us-east-2"
+    }
 }
 
 resource "aws_dynamodb_table" "course_table" {
@@ -49,6 +57,10 @@ resource "aws_dynamodb_table" "course_table" {
     attribute {
         name = "course_id"
         type = "N"
+    }
+    
+    replica {
+        region_name = "us-east-2"
     }
 
 }
@@ -63,6 +75,10 @@ resource "aws_dynamodb_table" "student_table" {
     attribute {
         name = "stu_id"
         type = "N"
+    }
+    
+    replica {
+        region_name = "us-east-2"
     }
 
 }
@@ -87,6 +103,10 @@ resource "aws_dynamodb_table" "enrollment_table" {
     attribute {
         name = "stu_id"
         type = "N"
+    }
+    
+    replica {
+        region_name = "us-east-2"
     }
 
     global_secondary_index {
@@ -118,6 +138,10 @@ resource "aws_dynamodb_table" "pre_enroll_table" {
     attribute {
         name = "stu_id"
         type = "N"
+    }
+    
+    replica {
+        region_name = "us-east-2"
     }
 
     global_secondary_index {

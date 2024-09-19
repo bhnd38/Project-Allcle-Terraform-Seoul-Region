@@ -1,118 +1,44 @@
-# DynamoDB 글로벌 테이블 생성
-resource "aws_dynamodb_global_table" "schedule_table" {
-    depends_on = [ aws_dynamodb_table.schedule_table ]
-    
-    name = "Schedule"
-
-    replica {
-        region_name = "ap-northeast-2"
-    }
-
-    replica {
-        region_name = "us-east-2"
-    }
-
-    lifecycle {
-        ignore_changes = [ replica ]
-    }
+provider "aws" {
+  alias = "us-east-2"
+  region = "us-east-2"
 }
 
-resource "aws_dynamodb_global_table" "professor_table" {
-    depends_on = [
-        aws_dynamodb_table.professor_table
-    ]
-    
-    name = "Professor"
+resource "aws_dynamodb_table_replica" "schedule_table" {
+  provider = aws.us-east-2
+  global_table_arn = aws_dynamodb_table.schedule_table.arn
 
-    replica {
-        region_name = "us-east-2"
-    }
-
-    replica {
-        region_name = "ap-northeast-2"
-    }
-
-    lifecycle {
-        ignore_changes = [ replica ]
-    }
+  depends_on = [ aws_dynamodb_table.schedule_table ]
 }
 
-resource "aws_dynamodb_global_table" "course_table" {
-    depends_on = [
-        aws_dynamodb_table.course_table
-    ]
-    
-    name = "Course"
+resource "aws_dynamodb_table_replica" "professor_table" {
+  provider = aws.us-east-2
+  global_table_arn = aws_dynamodb_table.professor_table.arn
 
-    replica {
-        region_name = "us-east-2"
-    }
-
-    replica {
-        region_name = "ap-northeast-2"
-    }
-
-    lifecycle {
-        ignore_changes = [ replica ]
-    }
+  depends_on = [ aws_dynamodb_table.professor_table ]
 }
 
-resource "aws_dynamodb_global_table" "student_table" {
-    depends_on = [
-        aws_dynamodb_table.student_table
-    ]
-    
-    name = "Student"
-
-    replica {
-        region_name = "us-east-2"
-    }
-
-    replica {
-        region_name = "ap-northeast-2"
-    }
-
-    lifecycle {
-        ignore_changes = [ replica ]
-    }
+resource "aws_dynamodb_table_replica" "course_table" {
+  provider = aws.us-east-2
+  global_table_arn = aws_dynamodb_table.course_table.arn
 }
 
-resource "aws_dynamodb_global_table" "enrollment_table" {
-    depends_on = [
-        aws_dynamodb_table.enrollment_table
-    ]
-    
-    name = "Enrollment"
+resource "aws_dynamodb_table_replica" "student_table" {
+  provider = aws.us-east-2
+  global_table_arn = aws_dynamodb_table.student_table.arn
 
-    replica {
-        region_name = "us-east-2"
-    }
-
-    replica {
-        region_name = "ap-northeast-2"
-    }
-
-    lifecycle {
-        ignore_changes = [ replica ]
-    }
+  depends_on = [ aws_dynamodb_table.student_table ]
 }
 
-resource "aws_dynamodb_global_table" "pre_enroll_table" {
-    depends_on = [
-        aws_dynamodb_table.pre_enroll_table
-    ]
-    
-    name = "PreEnroll"
+resource "aws_dynamodb_table_replica" "enrollment_table" {
+  provider = aws.us-east-2
+  global_table_arn = aws_dynamodb_table.enrollment_table.arn
 
-    replica {
-        region_name = "us-east-2"
-    }
+  depends_on = [ aws_dynamodb_table.enrollment_table ]
+}
 
-    replica {
-        region_name = "ap-northeast-2"
-    }
+resource "aws_dynamodb_table_replica" "pre_enroll_table" {
+  provider = aws.us-east-2
+  global_table_arn = aws_dynamodb_table.pre_enroll_table.arn
 
-    lifecycle {
-        ignore_changes = [ replica ]
-    }
+  depends_on = [ aws_dynamodb_table.pre_enroll_table ]
 }
