@@ -244,6 +244,7 @@ resource "aws_cloudwatch_event_target" "lambda_target" {
     maximum_event_age_in_seconds = 300 # 최대 5분
     maximum_retry_attempts       = 1 # 재시도 횟수 설정
   }
+  depends_on = [ aws_lambda_function.dynamo_backup ]
 }
 
 # Lambda 권한 부여 (EventBridge에 의해 트리거 가능하도록)
@@ -253,4 +254,6 @@ resource "aws_lambda_permission" "allow_eventbridge" {
   function_name = aws_lambda_function.dynamo_backup.function_name
   principal = "events.amazonaws.com"
   source_arn = aws_cloudwatch_event_rule.backup_schedule.arn
+
+  depends_on = [ aws_lambda_function.dynamo_backup, aws_cloudwatch_event_rule.backup_schedule ]
 }

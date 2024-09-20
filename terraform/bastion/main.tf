@@ -235,7 +235,7 @@ resource "kubernetes_ingress_v1" "allcle-ingress" {
             service {
               name = "nginx-pre"
               port {
-                number = 88
+                number = 8080
               }
             }
           }
