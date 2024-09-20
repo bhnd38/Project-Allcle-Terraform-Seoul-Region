@@ -35,6 +35,12 @@ variable "region" {
   default     = "ap-northeast-2"
 }
 
+variable "region_ohio" {
+  description = "AWS Ohio region for DR"
+  type = string
+  default = "us-west-2"
+}
+
 variable "instance_type" {
   description = "EKS instance type"
   type        = string

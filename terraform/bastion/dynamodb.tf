@@ -18,7 +18,11 @@ resource "aws_dynamodb_table" "schedule_table" {
     }
 
     replica {
-        region_name = "us-east-2"
+        region_name = var.region_ohio
+    }
+
+    lifecycle {
+    ignore_changes = [replica]
     }
 
     global_secondary_index {
@@ -43,7 +47,11 @@ resource "aws_dynamodb_table" "professor_table" {
     }
     
     replica {
-        region_name = "us-east-2"
+        region_name = var.region_ohio
+    }
+
+    lifecycle {
+    ignore_changes = [replica]
     }
 }
 
@@ -60,7 +68,10 @@ resource "aws_dynamodb_table" "course_table" {
     }
     
     replica {
-        region_name = "us-east-2"
+        region_name = var.region_ohio
+    }
+    lifecycle {
+    ignore_changes = [replica]
     }
 
 }
@@ -78,9 +89,12 @@ resource "aws_dynamodb_table" "student_table" {
     }
     
     replica {
-        region_name = "us-east-2"
+        region_name = var.region_ohio
     }
 
+    lifecycle {
+    ignore_changes = [replica]
+    }
 }
 
 resource "aws_dynamodb_table" "enrollment_table" {
@@ -106,7 +120,11 @@ resource "aws_dynamodb_table" "enrollment_table" {
     }
     
     replica {
-        region_name = "us-east-2"
+        region_name = var.region_ohio
+    }
+
+    lifecycle {
+    ignore_changes = [replica]
     }
 
     global_secondary_index {
@@ -141,7 +159,11 @@ resource "aws_dynamodb_table" "pre_enroll_table" {
     }
     
     replica {
-        region_name = "us-east-2"
+        region_name = var.region_ohio
+    }
+
+    lifecycle {
+    ignore_changes = [replica]
     }
 
     global_secondary_index {

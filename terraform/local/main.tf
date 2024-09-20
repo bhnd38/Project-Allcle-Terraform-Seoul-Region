@@ -227,6 +227,12 @@ resource "aws_security_group" "alb_sg" {
 }
 
 #----------------------------------------------------------------------------------------------
+# Bastion에 적용할 IAM Instance Profile 생성
+resource "aws_iam_instance_profile" "bastion" {
+  name = "AllcleBastionInstanceProfile"
+  role = aws_iam_role.AllcleBastionRole.name
+}
+
 
 # Bastion 인스턴스 생성
 resource "aws_instance" "bastion" {
@@ -234,6 +240,7 @@ resource "aws_instance" "bastion" {
   instance_type = var.instance_type
   subnet_id     = aws_subnet.public_a.id
   key_name      = var.public_key_pair
+  iam_instance_profile = aws_iam_instance_profile.bastion.name
   vpc_security_group_ids = [
     aws_security_group.bastion_sg.id
   ]

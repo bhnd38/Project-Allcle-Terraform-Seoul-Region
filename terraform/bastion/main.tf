@@ -222,7 +222,64 @@ resource "kubernetes_ingress_v1" "allcle-ingress" {
           }
         }
       }
+      
     }
+
+    rule {
+      host = "www.pre.allcle.net"
+      http {
+        path {
+          path = "/"
+          path_type = "ImplementationSpecific"
+          backend {
+            service {
+              name = "nginx-pre"
+              port {
+                number = 88
+              }
+            }
+          }
+        }
+      }
+    }  
+    
   }
   depends_on = [ helm_release.alb_controller ]  
 }
+
+#---------------------------------------------------------------
+## Argo CD 생성하기
+
+# # ECR 레포지토리 생성
+# resource "aws_ecr_repository" "flask-k8s" {
+#   name                 = "flask-k8s"
+#   image_tag_mutability = "MUTABLE"
+
+#   image_scanning_configuration {
+#     scan_on_push = false
+#   }
+# }
+
+# # resource "aws_ecr_repository" "nginx-k8s" {
+  
+# # }
+
+# # Argocd 네임스페이스 생성
+# resource "kubernetes_namespace" "argocd" {
+#   metadata {
+#     name = "argocd"
+#   }
+# }
+
+# # Argo CD 설치
+# resource "helm_release" "argocd" {
+#   name       = "argocd"
+#   repository = "https://argoproj.github.io/argo-helm"
+#   chart      = "argo-cd"
+#   namespace  = kubernetes_namespace.argocd.metadata[0].name
+
+#   set {
+#     name  = "server.service.type"
+#     value = "LoadBalancer"
+#   }
+# }
