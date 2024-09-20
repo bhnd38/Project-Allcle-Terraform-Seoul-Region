@@ -1,23 +1,23 @@
 # Bastion IAM Role 생성
-resource "aws_iam_role" "AllcleBastionRole" {
-  name = "allcle-bastion-role"
-  assume_role_policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Effect = "Allow",
-        Action = [
-          "eks:*",
-          "ec2:*",
-          "iam:*",
-          "cloudformation:*",
-          "s3:*"
-        ],
-        Resource = "*"
-      }
-    ]
-  })
-}
+# resource "aws_iam_role" "AllcleBastionRole" {
+#   name = "allcle-bastion-role"
+#   assume_role_policy = jsonencode({
+#     Version = "2012-10-17"
+#     Statement = [
+#       {
+#         Effect = "Allow",
+#         Action = [
+#           "eks:*",
+#           "ec2:*",
+#           "iam:*",
+#           "cloudformation:*",
+#           "s3:*"
+#         ],
+#         Resource = "*"
+#       }
+#     ]
+#   })
+# }
 
 
 # EKS ALB Controller IAM Role 생성
