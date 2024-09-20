@@ -141,7 +141,7 @@ data "aws_acm_certificate" "cloudfront" {
 
 # ALB용 ACM 인증서 데이터 소스
 data "aws_acm_certificate" "issued" {
-  domain = "allcle.net"
+  domain = "www.allcle.net"
   statuses = ["ISSUED"]
 }
 
