@@ -354,7 +354,7 @@ resource "aws_iam_policy" "cloudwatch_logs_policy" {
 # EKS 모듈에서 자동 생성된 노드그룹의 Role에 cloudwatchlogs 권한 정책 추가하기.
 resource "aws_iam_role_policy_attachment" "attach_cloudwatch_logs" {
   policy_arn = aws_iam_policy.cloudwatch_logs_policy.arn
-  role = module.eks.nodes_groups["allcle_eks_ng"].iam_role_arn
+  role = module.eks.eks_managed_node_groups["allcle_eks_ng"].aws_iam_role.arn
   depends_on = [ module.eks, aws_iam_policy.cloudwatch_logs_policy ]
 }
 
