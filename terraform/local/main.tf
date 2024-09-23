@@ -329,6 +329,37 @@ module "eks" {
   }
 }
 
+## EKS 노드 그룹에 Cloudwatch logs 권한 가진 Role 주기
+# Cloudwatch logs 접근 정책 생성
+resource "aws_iam_policy" "cloudwatch_logs_policy" {
+  name = "EKSNodeGroupCloudWatchLogsPolicy"
+  description = "Policy to allow writing EKS Nodes logs to CloudWatch"
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Action = [
+          "logs:CreateLogGroup",
+          "logs:CreateLogStream",
+          "logs:PutLogEvents",
+        ]
+        Resource = "*"
+      }
+    ]
+  })
+}
+
+# EKS 모듈에서 자동 생성된 노드그룹의 Role에 cloudwatchlogs 권한 정책 추가하기.
+resource "aws_iam_role_policy_attachment" "attach_cloudwatch_logs" {
+  policy_arn = aws_iam_policy.cloudwatch_logs_policy.arn
+  role = module.eks.nodes_groups["allcle_eks_ng"].iam_role_arn
+  depends_on = [ module.eks, aws_iam_policy.cloudwatch_logs_policy ]
+}
+
+#-------------------------------------------------------------------------------
+
 # EKS 클러스터 보안 그룹에 인바운드 룰 추가
 resource "aws_security_group_rule" "eks_from_bastion" {
   type = "ingress"

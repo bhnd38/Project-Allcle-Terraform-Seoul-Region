@@ -132,7 +132,7 @@ data "aws_ami" "amazon_linux_2023" {
 
 ## ACM 인증서 데이터
 
-# Cloudfront용 ACM 인증서 데이터 소스
+# front용 ACM 인증서 데이터 소스
 data "aws_acm_certificate" "cloudfront" {
   provider = aws.virginia
   domain = "www.allcle.net"
@@ -229,7 +229,7 @@ resource "kubernetes_ingress_v1" "allcle-ingress" {
       host = "www.pre.allcle.net"
       http {
         path {
-          path = "/"
+          path = "/*"
           path_type = "ImplementationSpecific"
           backend {
             service {

@@ -23,6 +23,7 @@ resource "aws_dynamodb_table" "schedule_table" {
 
     lifecycle {
     ignore_changes = [replica]
+    prevent_destroy = false
     }
 
     global_secondary_index {
@@ -52,6 +53,7 @@ resource "aws_dynamodb_table" "professor_table" {
 
     lifecycle {
     ignore_changes = [replica]
+    prevent_destroy = false
     }
 }
 
@@ -72,6 +74,7 @@ resource "aws_dynamodb_table" "course_table" {
     }
     lifecycle {
     ignore_changes = [replica]
+    prevent_destroy = false
     }
 
 }
@@ -94,6 +97,7 @@ resource "aws_dynamodb_table" "student_table" {
 
     lifecycle {
     ignore_changes = [replica]
+    prevent_destroy = false
     }
 }
 
@@ -125,6 +129,7 @@ resource "aws_dynamodb_table" "enrollment_table" {
 
     lifecycle {
     ignore_changes = [replica]
+    prevent_destroy = false
     }
 
     global_secondary_index {
@@ -164,6 +169,7 @@ resource "aws_dynamodb_table" "pre_enroll_table" {
 
     lifecycle {
     ignore_changes = [replica]
+    prevent_destroy = false
     }
 
     global_secondary_index {

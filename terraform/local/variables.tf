@@ -103,7 +103,7 @@ variable "eks_ingress_name" {
 variable "untangle_public_ip" {
   description = "Untangle's Public IP"
   type = string
-  default = "175.196.82.2"
+  default = "175.196.82.12"
 }
 
 variable "tunnel1_psk" {
