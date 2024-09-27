@@ -227,6 +227,10 @@ resource "aws_security_group" "alb_sg" {
 }
 
 #----------------------------------------------------------------------------------------------
+
+# Bastion IAM Role 생성
+
+
 # Bastion에 적용할 IAM Instance Profile 생성
 # resource "aws_iam_instance_profile" "bastion" {
 #   name = "AllcleBastionInstanceProfile"

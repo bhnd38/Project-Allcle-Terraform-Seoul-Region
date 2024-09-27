@@ -19,7 +19,7 @@ provider "kubernetes" {
 }
 
 provider "helm" {
-  kubernetes{
+  kubernetes {
     host = data.aws_eks_cluster.cluster.endpoint
     #config_path = "~/.kube/config"
     cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority[0].data)
@@ -154,10 +154,6 @@ data "aws_iam_role" "alb_controller_role" {
   name = "alb-controller-role"
 }
 
-# ALB 데이터 가져오기
-# data "aws_lb" "alb" {
-#   name = a
-# }
 
 # HELM 차트로 alb controller 배포
 resource "helm_release" "alb_controller" {
@@ -210,7 +206,7 @@ resource "kubernetes_ingress_v1" "allcle-ingress" {
       host = "www.allcle.net"
       http {
         path {
-          path = "/"
+          path = "/*"
           path_type = "ImplementationSpecific"
           backend {
             service {

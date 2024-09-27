@@ -101,3 +101,9 @@ variable "eks_ingress_name" {
   type = string
   default = "allcle-ingress"
 }
+
+variable "seoul_alb_dns" {
+  description = "Seoul Region ALB DNS Address"
+  type = string
+  default = "k8s-default-allclein-968f5c5995-1490216131.ap-northeast-2.elb.amazonaws.com"
+}

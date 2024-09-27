@@ -1,1 +1,2 @@
 terraform/bastion/dynamodb_global.tf
+terraform/bastion/hpa.tf
